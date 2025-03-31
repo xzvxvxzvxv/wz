@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我要入股 - 汉堡包科技</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+<body class="page-transition">
+    <header>
+        <div class="logo">
+            <h1>汉堡包科技</h1>
+            <p>创新美味，科技引领</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="jobs.html">求职</a></li>
+                <li><a href="news.html">新闻</a></li>
+                <li><a href="stores.html">门店查询</a></li>
+                <li><a href="invest.html">我要入股</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="invest-section">
+            <h2>投资加盟</h2>
+            <p>加入汉堡包科技，共享美食科技红利</p>
+            
+            <div class="job-listings">
+                <article class="job" data-position="single">
+                    <h3>单店加盟</h3>
+                    <p>投资金额: 50-100万</p>
+                    <ul>
+                        <li>品牌使用权</li>
+                        <li>全套运营支持</li>
+                        <li>区域保护政策</li>
+                        <li>总部培训</li>
+                    </ul>
+                    <button class="invest-btn" data-type="single">立即咨询</button>
+                </article>
+
+                <article class="job featured" data-position="region">
+                    <h3>区域代理</h3>
+                    <p>投资金额: 300-500万</p>
+                    <ul>
+                        <li>区域独家代理权</li>
+                        <li>5-10家门店开发权</li>
+                        <li>更高利润分成</li>
+                        <li>优先选址权</li>
+                    </ul>
+                    <button class="invest-btn" data-type="region">立即咨询</button>
+                </article>
+
+                <article class="job" data-position="strategy">
+                    <h3>战略投资</h3>
+                    <p>投资金额: 1000万以上</p>
+                    <ul>
+                        <li>公司股权</li>
+                        <li>董事会席位</li>
+                        <li>全国市场收益</li>
+                        <li>技术共享</li>
+                    </ul>
+                    <button class="invest-btn" data-type="strategy">立即咨询</button>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- 投资申请弹窗 -->
+    <div class="modal-overlay" id="investModal" style="display: none;">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h3>投资意向表</h3>
+            <form id="investForm">
+                <div class="form-group">
+                    <label for="invest-name">姓名</label>
+                    <input type="text" id="invest-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="invest-phone">联系电话</label>
+                    <input type="tel" id="invest-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="invest-email">电子邮箱</label>
+                    <input type="email" id="invest-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="invest-type">投资类型</label>
+                    <select id="invest-type" required>
+                        <option value="">请选择</option>
+                        <option value="single">单店加盟</option>
+                        <option value="region">区域代理</option>
+                        <option value="strategy">战略投资</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="invest-amount">预计投资金额(万元)</label>
+                    <input type="number" id="invest-amount" min="50">
+                </div>
+                <div class="form-group">
+                    <label for="invest-region">意向区域</label>
+                    <input type="text" id="invest-region">
+                </div>
+                <div class="form-group">
+                    <label for="invest-message">留言</label>
+                    <textarea id="invest-message" rows="4"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">提交意向</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 汉堡包科技股份有限公司 版权所有</p>
+    </footer>
+
+    <script>
+        // 显示投资申请弹窗
+        document.querySelectorAll('.invest-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const investType = this.dataset.type;
+                document.getElementById('invest-type').value = investType;
+                document.getElementById('investModal').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // 关闭弹窗
+        document.querySelector('.close-modal').addEventListener('click', function() {
+            document.getElementById('investModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // 点击遮罩层关闭弹窗
+        document.getElementById('investModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // 表单提交
+        document.getElementById('investForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('投资意向已提交，我们将尽快与您联系！');
+            document.getElementById('investModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            this.reset();
+        });
+    </script>
+</body>
+</html>

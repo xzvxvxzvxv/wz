@@ -1,0 +1,624 @@
+/* 弹窗样式 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    margin: 0 auto;
+    transform: translateY(-50%);
+    top: 50%;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* 基础样式 - 汉堡布局 */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* 加载动画 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ff8c00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* 返回顶部按钮 */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #ff8c00;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    z-index: 99;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.back-to-top:hover {
+    background-color: #e67e00;
+}
+
+header {
+    background-color: #ff8c00;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    flex-shrink: 0;
+    position: relative;
+}
+
+/* 响应式导航菜单 */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        display: none;
+    }
+    
+    nav ul.active {
+        display: flex;
+    }
+}
+
+main {
+    flex: 1;
+    padding: 2rem 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+nav li {
+    margin: 0 1rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+/* 表单验证样式 */
+.error-message {
+    color: #e74c3c;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+input.error, select.error, textarea.error {
+    border-color: #e74c3c !important;
+}
+
+/* 门店页面样式 */
+.stores-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.store-search {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.store-search input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.search-btn, .locate-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-btn {
+    background-color: #ff8c00;
+    color: white;
+}
+
+.locate-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.store-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+}
+
+.store-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.store-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.store-address, .store-hours, .store-phone {
+    margin: 0.5rem 0;
+    color: #666;
+}
+
+.view-on-map {
+    background-color: #ff8c00;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.store-map {
+    height: 600px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#map-container {
+    width: 100%;
+    height: 100%;
+}
+
+/* 其他页面样式保持不变 */
+.job-listings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.job {
+    border: 1px solid #ddd;
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.job:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.job.featured {
+    border: 2px solid #ff8c00;
+    position: relative;
+    overflow: hidden;
+}
+
+.job.featured::before {
+    content: "热门选择";
+    position: absolute;
+    top: 10px;
+    right: -30px;
+    background-color: #ff8c00;
+    color: white;
+    padding: 0.25rem 2rem;
+    transform: rotate(45deg);
+    font-size: 0.8rem;
+    z-index: 1;
+}
+
+.job.expanded {
+    background-color: #fff8f0;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.job.expanded ul {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+}
+
+.job.expanded li {
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.job.expanded li::before {
+    content: "•";
+    color: #ff8c00;
+    position: absolute;
+    left: -1rem;
+}
+
+.apply-btn, .submit-btn {
+    background-color: #ff8c00;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* 首页样式 */
+.hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    background-color: #fff8f0;
+}
+
+.cta-btn {
+    display: inline-block;
+    background-color: #ff8c00;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 1rem;
+}
+
+.about {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.products {
+    padding: 3rem 2rem;
+    background-color: #f9f9f9;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.product-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.news-preview {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 新闻页面样式 */
+.news-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.news-filters {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background-color: #ff8c00;
+    color: white;
+    border-color: #ff8c00;
+}
+
+.news-list {
+    display: grid;
+    gap: 2rem;
+}
+
+.news-item {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.news-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.news-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.news-date {
+    color: #666;
+    margin: 0.5rem 0;
+}
+
+.read-more {
+    align-self: flex-start;
+    margin-top: auto;
+    color: #ff8c00;
+    text-decoration: none;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 3rem;
+}
+
+.page-btn, .next-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.page-btn.active {
+    background-color: #ff8c00;
+    color: white;
+    border-color: #ff8c00;
+}
+
+/* 工作人员管理页面样式 */
+.staff-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.staff-controls {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0;
+    gap: 1rem;
+}
+
+.search-box {
+    display: flex;
+    flex: 1;
+    max-width: 400px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+}
+
+.search-box button {
+    padding: 0.5rem 1rem;
+    background-color: #ff8c00;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.filter-options select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.applicant-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.applicant-table th, 
+.applicant-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.applicant-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.status-pending {
+    color: #f39c12;
+}
+
+.status-approved {
+    color: #2ecc71;
+}
+
+.status-rejected {
+    color: #e74c3c;
+}
+
+.view-details-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.applicant-details {
+    margin-top: 1rem;
+}
+
+.detail-row {
+    margin-bottom: 1rem;
+}
+
+.detail-label {
+    font-weight: bold;
+    min-width: 100px;
+    display: inline-block;
+}
+
+.action-buttons {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.approve-btn {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.reject-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    flex-shrink: 0;
+}

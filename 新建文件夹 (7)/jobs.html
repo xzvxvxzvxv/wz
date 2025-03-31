@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加入我们 - 汉堡包科技</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+<body class="page-transition">
+    <header>
+        <div class="logo">
+            <h1>汉堡包科技</h1>
+            <p>创新美味，科技引领</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="jobs.html">求职</a></li>
+                <li><a href="news.html">新闻</a></li>
+                <li><a href="stores.html">门店查询</a></li>
+                <li><a href="invest.html">我要入股</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="jobs-section">
+            <h2>加入我们的团队</h2>
+            <p>我们正在寻找有才华的人才加入我们快速发展的团队</p>
+            
+            <div class="job-listings">
+                <article class="job" data-position="engineer">
+                    <h3>汉堡研发工程师</h3>
+                    <p>负责新口味汉堡的研发和创新</p>
+                    <ul>
+                        <li>薪资：15k-25k/月</li>
+                        <li>地点：上海/北京/广州</li>
+                        <li>经验：3年以上食品研发经验</li>
+                        <li>福利：五险一金、年度体检、带薪年假</li>
+                    </ul>
+                    <button class="apply-btn">立即申请</button>
+                </article>
+
+                <article class="job" data-position="manager">
+                    <h3>门店经理</h3>
+                    <p>负责门店日常运营和管理</p>
+                    <ul>
+                        <li>薪资：12k-18k/月+绩效奖金</li>
+                        <li>地点：全国各门店</li>
+                        <li>经验：5年以上餐饮管理经验</li>
+                        <li>福利：五险一金、员工餐、季度奖金</li>
+                    </ul>
+                    <button class="apply-btn">立即申请</button>
+                </article>
+
+                <article class="job" data-position="marketing">
+                    <h3>市场营销专员</h3>
+                    <p>负责品牌推广和营销活动策划</p>
+                    <ul>
+                        <li>薪资：10k-15k/月</li>
+                        <li>地点：上海总部</li>
+                        <li>经验：2年以上市场营销经验</li>
+                        <li>福利：五险一金、弹性工作制</li>
+                    </ul>
+                    <button class="apply-btn">立即申请</button>
+                </article>
+            </div>
+
+            <!-- 弹窗遮罩 -->
+            <div class="modal-overlay" id="applicationModal" style="display: none;">
+                <div class="modal-content">
+                    <button class="close-modal">&times;</button>
+                    <h3>申请职位</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">姓名</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">电子邮箱</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">联系电话</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="position">申请职位</label>
+                            <input type="text" id="position" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="salary">期望薪资</label>
+                            <input type="text" id="salary">
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">相关工作经验(年)</label>
+                            <input type="number" id="experience" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="resume">上传简历</label>
+                            <input type="file" id="resume" accept=".pdf,.doc,.docx">
+                        </div>
+                        <div class="form-group">
+                            <label for="cover-letter">求职信</label>
+                            <textarea id="cover-letter" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">提交申请</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 汉堡包科技股份有限公司 版权所有</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.apply-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const jobArticle = this.closest('.job');
+                const positionName = jobArticle.querySelector('h3').textContent;
+                
+                document.getElementById('position').value = positionName;
+                document.getElementById('applicationModal').style.display = 'block';
+                document.body.style.overflow = 'hidden'; // 禁止页面滚动
+            });
+        });
+
+        // 关闭弹窗
+        document.querySelector('.close-modal').addEventListener('click', function() {
+            document.getElementById('applicationModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // 恢复页面滚动
+        });
+
+        // 点击遮罩层关闭弹窗
+        document.getElementById('applicationModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>

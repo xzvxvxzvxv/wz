@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻中心 - 汉堡包科技</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+<body class="page-transition">
+    <header>
+        <div class="logo">
+            <h1>汉堡包科技</h1>
+            <p>创新美味，科技引领</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="jobs.html">求职</a></li>
+                <li><a href="news.html">新闻</a></li>
+                <li><a href="stores.html">门店查询</a></li>
+                <li><a href="invest.html">我要入股</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="news-section">
+            <h2>公司新闻</h2>
+            <p>了解汉堡包科技的最新动态和发展</p>
+            
+            <div class="news-filters">
+                <button class="filter-btn active" data-category="all">全部</button>
+                <button class="filter-btn" data-category="awards">获奖资讯</button>
+                <button class="filter-btn" data-category="stores">门店动态</button>
+                <button class="filter-btn" data-category="partnerships">合作新闻</button>
+            </div>
+            
+            <div class="news-list">
+                <article class="news-item" data-category="awards">
+                    <div class="news-image">
+                        <img src="news1.jpg" alt="获奖新闻图片">
+                    </div>
+                    <div class="news-content">
+                        <h3>汉堡包科技荣获2023年度创新食品奖</h3>
+                        <p class="news-date">2023-10-15</p>
+                        <p class="news-summary">我们很荣幸地宣布，汉堡包科技的"智能营养汉堡"系列荣获2023年度创新食品奖，这是对我们科技创新能力的肯定...</p>
+                        <a href="#" class="read-more">阅读详情</a>
+                    </div>
+                </article>
+
+                <article class="news-item" data-category="stores">
+                    <div class="news-image">
+                        <img src="news2.jpg" alt="门店开业图片">
+                    </div>
+                    <div class="news-content">
+                        <h3>上海旗舰店盛大开业</h3>
+                        <p class="news-date">2023-09-28</p>
+                        <p class="news-summary">汉堡包科技在上海的首家旗舰店于9月28日正式开业，采用最新智能点餐系统和3D打印技术，开业当天吸引了超过1000名顾客...</p>
+                        <a href="#" class="read-more">阅读详情</a>
+                    </div>
+                </article>
+
+                <article class="news-item" data-category="partnerships">
+                    <div class="news-image">
+                        <img src="news3.jpg" alt="合作签约图片">
+                    </div>
+                    <div class="news-content">
+                        <h3>与农业大学达成战略合作</h3>
+                        <p class="news-date">2023-08-10</p>
+                        <p class="news-summary">汉堡包科技与中国农业大学食品学院达成战略合作，共同研发新一代健康汉堡，预计2024年推出首款合作产品...</p>
+                        <a href="#" class="read-more">阅读详情</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="pagination">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <span>...</span>
+                <button class="page-btn">5</button>
+                <button class="next-btn">下一页</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 汉堡包科技股份有限公司 版权所有</p>
+    </footer>
+</body>
+</html>

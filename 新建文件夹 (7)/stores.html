@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>门店查询 - 汉堡包科技</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+<body class="page-transition">
+    <header>
+        <div class="logo">
+            <h1>汉堡包科技</h1>
+            <p>创新美味，科技引领</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="jobs.html">求职</a></li>
+                <li><a href="news.html">新闻</a></li>
+                <li><a href="stores.html">门店查询</a></li>
+                <li><a href="invest.html">我要入股</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="stores-section">
+            <h2>我们的门店</h2>
+            <p>查找离您最近的汉堡包科技门店</p>
+            
+            <div class="store-search">
+                <input type="text" id="search-input" placeholder="输入城市或地址">
+                <button class="search-btn" id="search-btn">搜索</button>
+                <button class="locate-btn" id="locate-btn">定位我的位置</button>
+            </div>
+
+            <div class="store-content">
+                <div class="store-list">
+                    <article class="store-item" data-lat="31.2304" data-lng="121.4737">
+                        <h3>上海旗舰店</h3>
+                        <p class="store-address">上海市黄浦区南京东路123号</p>
+                        <p class="store-hours">营业时间: 10:00-22:00</p>
+                        <p class="store-phone">联系电话: 021-12345678</p>
+                        <button class="view-on-map">在地图上查看</button>
+                    </article>
+
+                    <article class="store-item" data-lat="39.9042" data-lng="116.4074">
+                        <h3>北京中关村店</h3>
+                        <p class="store-address">北京市海淀区中关村大街88号</p>
+                        <p class="store-hours">营业时间: 10:00-21:30</p>
+                        <p class="store-phone">联系电话: 010-87654321</p>
+                        <button class="view-on-map">在地图上查看</button>
+                    </article>
+
+                    <article class="store-item" data-lat="23.1291" data-lng="113.2644">
+                        <h3>广州天河店</h3>
+                        <p class="store-address">广州市天河区天河路456号</p>
+                        <p class="store-hours">营业时间: 10:30-22:30</p>
+                        <p class="store-phone">联系电话: 020-11223344</p>
+                        <button class="view-on-map">在地图上查看</button>
+                    </article>
+                </div>
+
+                <div class="store-map">
+                    <div id="map-container"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=您的百度地图AK"></script>
+    <script>
+        // 初始化地图
+        const map = new BMap.Map("map-container");
+        map.centerAndZoom(new BMap.Point(116.404, 39.915), 5);
+        map.enableScrollWheelZoom();
+        
+        // 添加门店标记
+        const stores = document.querySelectorAll('.store-item');
+        stores.forEach(store => {
+            const lat = parseFloat(store.dataset.lat);
+            const lng = parseFloat(store.dataset.lng);
+            const point = new BMap.Point(lng, lat);
+            const marker = new BMap.Marker(point);
+            
+            const infoWindow = new BMap.InfoWindow(`
+                <h4>${store.querySelector('h3').textContent}</h4>
+                <p>${store.querySelector('.store-address').textContent}</p>
+                <p>${store.querySelector('.store-hours').textContent}</p>
+                <p>${store.querySelector('.store-phone').textContent}</p>
+            `);
+            
+            marker.addEventListener('click', () => {
+                map.openInfoWindow(infoWindow, point);
+            });
+            
+            map.addOverlay(marker);
+            
+            // 点击门店列表时定位到地图
+            store.querySelector('.view-on-map').addEventListener('click', () => {
+                map.setCenter(point);
+                map.setZoom(17);
+                map.openInfoWindow(infoWindow, point);
+            });
+        });
+        
+        // 搜索功能
+        document.getElementById('search-btn').addEventListener('click', () => {
+            const query = document.getElementById('search-input').value;
+            if (!query) return;
+            
+            const local = new BMap.LocalSearch(map, {
+                renderOptions: {map: map, panel: "map-container"}
+            });
+            local.search(query);
+        });
+        
+        // 定位功能
+        document.getElementById('locate-btn').addEventListener('click', () => {
+            const geolocation = new BMap.Geolocation();
+            geolocation.getCurrentPosition(function(r){
+                if(this.getStatus() == BMAP_STATUS_SUCCESS){
+                    const mk = new BMap.Marker(r.point);
+                    map.addOverlay(mk);
+                    map.panTo(r.point);
+                    map.setZoom(15);
+                }
+            });
+        });
+    </script>
+
+    <footer>
+        <p>&copy; 2023 汉堡包科技股份有限公司 版权所有</p>
+    </footer>
+</body>
+</html>
